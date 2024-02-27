@@ -1,0 +1,33 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+const int n = 4;
+ 
+// Function to calculate the electricity bill
+int calculateBill(int units)
+{
+    int charges[n] = { 10, 15, 20, 25 };
+    int range[n] = { 100, 100, 100, INT_MAX };
+    int bill = 0;
+ 
+    for (int i = 0; i < n; i++) {
+        if (units <= range[i]) {
+            bill += charges[i] * units;
+            break;
+        }
+        else {
+            bill += charges[i] * range[i];
+            units -= range[i];
+        }
+    }
+    return bill;
+}
+ 
+// Driver code
+int main()
+{
+    int units = 250;
+    cout << calculateBill(units);
+    return 0;
+}
